@@ -1,0 +1,183 @@
+Here is a clean, exam-ready, perfectly structured lab record with zero errors.
+You can write this exactly as it is in your lab book.
+All steps are clear, numbered, short, and professional.
+
+LAB RECORD
+Experiment: Jenkins – CI using GitHub Webhooks & Email Notification
+AIM
+
+To configure:
+
+Continuous Integration (CI) in Jenkins using GitHub Webhooks
+
+Email Notifications for Jenkins build success or failure
+
+SOFTWARE / TOOLS USED
+
+Jenkins
+
+GitHub
+
+ngrok
+
+Gmail (App Password)
+
+PART–A: CI USING GITHUB WEBHOOK + NGROK
+THEORY
+Continuous Integration (CI)
+
+CI is a process where developers push code frequently to GitHub, and Jenkins automatically builds and tests the project.
+
+Webhook
+
+A webhook is a URL where GitHub sends a message whenever an event happens (e.g., push).
+This message triggers Jenkins automatically.
+
+Need for ngrok
+
+If Jenkins runs on localhost, GitHub cannot reach it.
+ngrok creates a public URL and forwards GitHub requests to local Jenkins.
+
+PROCEDURE
+Step 1: Start Jenkins & ngrok
+
+Start Jenkins locally
+Example URL: http://localhost:8085/
+
+Download ngrok and run:
+
+ngrok http 8085
+
+
+Copy the ngrok HTTPS URL
+Example:
+https://1234abcd.ngrok.io
+
+Step 2: Configure GitHub Webhook
+
+Go to GitHub Repository → Settings → Webhooks → Add Webhook
+
+Payload URL:
+
+https://1234abcd.ngrok.io/github-webhook/
+
+
+Content type:
+application/json
+
+Event selection:
+Select → Just the push event
+
+Click Add webhook
+
+Step 3: Configure Jenkins to Accept Webhooks
+
+Go to Jenkins Dashboard → Your Job → Configure
+
+Scroll to Build Triggers
+
+Enable:
+✔ GitHub hook trigger for GITScm polling
+
+Click Save
+
+Step 4: Test CI
+
+Make any change in your project
+
+Push to GitHub:
+
+git add .
+git commit -m "testing webhook"
+git push
+
+
+GitHub sends webhook
+
+Jenkins automatically starts the build
+
+OUTCOME (Part–A)
+
+GitHub successfully connected to Jenkins via webhook
+
+Every push automatically triggers Jenkins build
+
+CI is functioning correctly
+
+PART–B: EMAIL NOTIFICATION SETUP
+THEORY
+
+Jenkins sends email alerts to developers after build success/failure.
+Gmail requires a 16-digit App Password (because normal password won’t work with Jenkins).
+
+PROCEDURE
+Step 1: Create Gmail App Password
+
+Open: https://myaccount.google.com
+
+Go to Security → 2-Step Verification → Turn ON
+
+Then go to Security → App Passwords
+
+Choose:
+
+App → Other (Custom Name): Jenkins-Demo
+
+Generate → copy the 16-digit password
+
+Step 2: Install Email Extension Plugin
+
+Jenkins Dashboard → Manage Jenkins → Manage Plugins
+
+Search and install:
+Email Extension Plugin
+
+Step 3: Configure Global Email Settings
+
+Go to: Manage Jenkins → Configure System
+
+A. E-mail Notification
+Field	Value
+SMTP Server	smtp.gmail.com
+Use SMTP Auth	✔ Enabled
+User Name	your Gmail ID
+Password	16-digit App Password
+Use SSL	✔ Enabled
+SMTP Port	465
+Reply-To Address	your Gmail ID
+
+Click: Test configuration by sending test e-mail
+
+B. Extended Email Notification
+Field	Value
+SMTP Server	smtp.gmail.com
+SMTP Port	465
+Use SSL	✔
+Credentials	Add Gmail + App Password
+Default Content Type	text/html
+
+Click Save
+
+Step 4: Configure Email for a Specific Job
+
+Open Job → Configure
+
+Scroll to Post-build Actions
+
+Click: Add post-build action → Editable Email Notification
+
+Fill:
+
+Project Recipient List: your mail IDs
+
+Triggers: Failure / Success / Both
+
+Content type: default
+
+Click Save
+
+Step 5: Test Email
+
+Run the job or push code
+
+If the build fails/succeeds → you will receive an email from Jenkins
