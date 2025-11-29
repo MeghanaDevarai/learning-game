@@ -232,7 +232,8 @@ Maven Web:
                	└── Artifacts to copy: */
             └── Post-build Actions:
                 ├── Add Post Build Action -> "Deploy WAR/EAR to a container"
-   └── WAR/EAR File: */.war
+   └── WAR/EAR File: */.war or **/target/*.war target/myweb.war
+
    └── Context path: Webpath
  └── Add container -> Tomcat 9.x remote
 └── Credentials: Username: admin, Password: 1234
