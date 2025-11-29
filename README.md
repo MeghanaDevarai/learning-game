@@ -3,25 +3,22 @@
 
 kubernetes:
 windows powershell(administrator mode)
-cmds: 1.minikube start
+cmds: 1.minikube start 1
 2.docker login
-3.minikube version
+3.minikube version 
 4.minikube status
-5.kubectl create deployment myngnix --image=ngnix (can use nginx or ngnix also but use the same evrywhere)
-   if already created then type kubectl set image deployment/myngnix nginx=nginx:latest
+5.kubectl create deployment myngnix --image=ngnix 2
 6. minikube status
 7.kubectl get deployment
-8.kubectl get pods
-9.kubectl describe pods
-10.kubectl scale deployment myngnix --replicas=4
-11.kubectl get deployment
-12.kubectl get pods
-13.copy the NAME of one of the pods
-14.kubectl describe pod paste <the NAME you've copied>
-15.kubectl get service myngnix
-16.kubectl export deployment myngnix --type=NodePort --port=80 --target=80 --name=myngnix
-17.kubectl get service myngnix
-18.kubectl port-forward service/myngnix 30088:80
+8.kubectl get pods 3
+9.kubectl describe pods 4
+10.kubectl scale deployment myngnix --replicas=4 5
+11.kubectl get deployment 6
+12.kubectl get pods 7
+16.kubectl expose deployment myngnix --type=NodePort --port=80  8
+15.kubectl get service myngnix or  9.1
+17.kubectl service myngnix(finnaly) 9
+18.kubectl port-forward service/myngnix 30088:80 10
 19.in browser type 127.0.0.1:30088(ntg copy and paste the url in browser).
 20.open another windows powershell in administrator mode and type (minikube dashboard).
 21.automatically opens.
