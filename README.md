@@ -1,28 +1,4 @@
 # learning-game
-Star uml: 
-use case:
-model(right click)---add diagram-use-case diagram(left bottom handler)---sys bound(use case sub,drag it and can increase/dec also and give name---use-case(toolbox,drag and paste)(give name and can move also).
-select actors(click on page where you want and name it)---select association(actors&use-cases,select & place pointer on actor & drag it to use-case)
-include/extends(scroll toolbox,give another use-case and give,drag from one use case to another usecase.)(same for extend: relation don't overlap please each other)
-
-
-class diag:
-model(right click)---add diag---class diag---left bottom(toolbox)---click on class(drag,drop and name it)---for attribute(take pointer to topbox of class doble click there(click on 1st symbol(add attr) if one more--click +)
-for methods(same go to topbox,click on second option same)+ for more---for association(click on it in toolbox(from ATM to bank(drag and drop) write maintains
-for multiplicity(go to one corner of association(double click(inside dropdown box(select 1 option))))--again go back to next corner(double click and select 1 option).
-
-
-sequence diag:
-model(right click)---add diag(seq)---now we need actor(but in toolbox no actor so again to model---add--actor--click on actor--drag and drop it.
-to change name(Editors--clcik on actor name: Acc holder-- changed).
-click on lifeline(drag & paste it)(change name).--increase the lifeline also(by drag)--click on msg(drag b/w lifelines and drop)---we can drag action box also.---for reply(double click on ----> clcik on option(add reply))(in editor we can change reply msg under name).
-scroll down(editor-->guard-->invalid)---clcik on reply msg in toolbox--drag and drop(write msg under it).---for every new interaction new activation box is required.
-
-component diagram:
-model(right click)--add diag(comp)--clcik on comp(toolbox drag and drop (give name)---for interface--docble click on comp diag(--o click drag and drop)---change the name of interface--dependency for cash dispenser.
-
-
-
 
 
 kubernetes:
