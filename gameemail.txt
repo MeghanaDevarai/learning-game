@@ -267,3 +267,208 @@ Add:
 Type	Port	Source
 Custom TCP	6060	0.0.0.0/0
 DONE — Web App Successfully Deployed on Cloud
+
+
+maven web 
+<dependency>
+    <groupId>javax.servlet</groupId>
+    <artifactId>javax.servlet-api</artifactId>
+    <version>4.0.1</version>
+    <scope>provided</scope>
+</dependency>
+
+
+🌟 PART–1: MAVEN JAVA PROJECT (JAR Project)
+(Console-based Java application)
+✅ STEP 1: Create Maven Java Project
+
+Open Eclipse
+
+Click: File → New → Maven Project
+
+Check: Create a simple project (skip archetype selection) ✔
+
+Click Next
+
+Enter the following:
+
+Group Id:    com.kmit
+Artifact Id: myapp
+Version:     1.0
+Packaging:   jar
+
+
+Click Finish
+
+🔧 STEP 2: Eclipse creates folder structure
+myapp/
+ ├── src/main/java
+ ├── src/test/java
+ └── pom.xml
+
+📝 STEP 3: Add Java Class
+
+Expand src/main/java
+
+Right-click → New → Package
+
+Enter:
+
+com.kmit
+
+
+Right-click package → New → Class
+
+Class Name:
+
+App
+
+
+✔ check public static void main(String[] args)
+
+Paste code:
+
+package com.kmit;
+
+public class App {
+    public static void main(String[] args) {
+        System.out.println("Hello Maven Java Project!");
+    }
+}
+
+▶️ STEP 4: Run the program
+
+Right-click App.java →
+Run As → Java Application
+
+Output appears in console.
+
+📦 STEP 5: Build the JAR file
+
+Right-click project →
+Run As → Maven build…
+
+In Goals: type:
+
+clean package
+
+
+Click Run
+
+Generated JAR is found in:
+
+myapp/target/myapp-1.0.jar
+
+🌟 DONE — Maven Java Project Complete ✔
+🌟 PART–2: MAVEN WEB PROJECT (WAR Project)
+(Web application with JSP, deployable in Tomcat)
+✅ STEP 1: Create Maven Web Project
+
+Eclipse → File → New → Maven Project
+
+Uncheck simple project
+
+Click Next
+
+In archetype list search:
+
+maven-archetype-webapp
+
+
+Select → Next
+
+Enter:
+
+Group Id:    com.kmit
+Artifact Id: myweb
+Version:     1.0
+Packaging:   war
+
+
+Click Finish
+
+🔧 STEP 2: Eclipse creates folder structure
+myweb/
+ ├── src/main/webapp
+ │     ├── index.jsp
+ │     └── WEB-INF/web.xml
+ └── pom.xml
+
+📝 STEP 3: Modify JSP (Optional)
+
+Open:
+
+src/main/webapp/index.jsp
+
+
+Replace with:
+
+<html>
+<body>
+<h1>Hello Maven Web Project!</h1>
+</body>
+</html>
+
+⚙️ STEP 4: Convert to Dynamic Web Project
+
+Right-click project →
+Properties → Project Facets
+
+✔ Select:
+
+Dynamic Web Module → 4.0
+
+Java → 1.8 or 11
+
+Runtime → Apache Tomcat v9
+
+Click Apply and Close
+
+🖥 STEP 5: Set up Tomcat Server
+
+Open Servers tab
+(If not visible: Window → Show View → Servers)
+
+Right-click → New → Server
+
+Choose:
+
+Apache → Tomcat v9.0
+
+
+Browse to your Tomcat folder (ex: C:\tomcat9)
+
+Click Finish
+
+🔗 STEP 6: Add project to Tomcat
+
+Servers tab → Right-click Tomcat →
+Add and Remove…
+
+Select myweb → Add > → Finish
+
+▶️ STEP 7: Run on Server
+
+Right-click project →
+Run As → Run on Server
+Choose Tomcat → Finish
+
+Browser opens:
+
+http://localhost:8080/myweb/
+
+📦 STEP 8: Generate WAR file
+
+Right-click project →
+Run As → Maven build…
+
+In Goals:
+
+clean package
+
+
+Run.
+
+WAR is created in:
+
+myweb/target/myweb.war
