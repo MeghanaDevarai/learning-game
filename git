@@ -1,177 +1,113 @@
 SCENARIO-BASED GIT COMMANDS (ONE-LINE ANSWERS)
 🔹 1. Start a new project
-
 Command:
-
 git init
-
-
 Meaning: Create a new Git repository.
-
 🔹 2. Connect local project to GitHub
-
 Command:
-
 git remote add origin <repo-url>
-
-
 Meaning: Link your project to a GitHub repository.
-
 🔹 3. Check changes in your files
-
 Command:
-
 git status
-
-
 Meaning: Shows modified/untracked files.
-
 🔹 4. Add a single changed file
-
 Command:
-
 git add filename
-
-
 Meaning: Stage one file for commit.
-
 🔹 5. Add all changed files
-
 Command:
-
 git add .
-
-
 Meaning: Stage all files for commit.
-
 🔹 6. Save (commit) your work
-
 Command:
-
 git commit -m "message"
-
-
 Meaning: Save staged changes with a message.
-
 🔹 7. Push code to GitHub (first time)
-
 Command:
-
 git push -u origin main
-
-
 Meaning: Upload commits and set main as default branch.
-
 🔹 8. Push updates next time
-
 Command:
-
 git push
-
-
 Meaning: Upload new commits to GitHub.
-
 🔹 9. Pull latest code from GitHub
-
 Command:
-
 git pull
-
-
 Meaning: Bring latest changes from remote repository.
-
 🔹 10. Clone an existing GitHub project
-
 Command:
-
 git clone <repo-url>
-
-
 Meaning: Copy a repo to your system.
-
 🔹 11. Create a new branch
-
 Command:
-
 git checkout -b feature1
-
-
 Meaning: Create and switch to a new branch.
-
 🔹 12. Switch to an existing branch
-
 Command:
-
 git checkout feature1
-
-
 Meaning: Move to another branch.
-
 🔹 13. Merge a branch into main
-
 Command:
-
 git merge feature1
-
-
 Meaning: Combine branch changes into main.
-
 🔹 14. Delete a branch after merging
-
 Command:
-
 git branch -d feature1
-
-
 Meaning: Remove a local branch.
-
 🔹 15. View commit history
-
 Command:
-
 git log --oneline
-
-
 Meaning: See short commit history.
-
 🔹 16. Undo last commit (keep changes)
-
 Command:
-
 git reset --soft HEAD~1
-
-
 Meaning: Remove commit but keep files staged.
-
 🔹 17. Undo last commit (remove everything)
-
 Command:
-
 git reset --hard HEAD~1
-
-
 Meaning: Delete commit and changes permanently.
-
 🔹 18. Remove wrong remote URL
-
 Command:
-
 git remote remove origin
-
-
 Meaning: Remove GitHub connection.
-
 🔹 19. See connected remote URLs
-
 Command:
-
 git remote -v
-
-
 Meaning: List remote repositories.
-
 🔹 20. See what changed inside files
-
 Command:
-
 git diff
+#aws
+sudo apt update
+sudo apt install openjdk-11-jdk -y
+sudo apt install maven -y
+sudo apt install tomcat9 tomcat9-admin -y
+
+git clone https://github.com/MeghanaDevarai/maven-web.git
+cd maven-web
+mvn clean install
+ls /var/lib/tomcat9/webapps/
+sudo cp target/*.war /var/lib/tomcat9/webapps/
+sudo systemctl restart tomcat9
+systemctl status tomcat9
+ls /var/lib/tomcat9/webapps/
+
+sudo apt update
+sudo apt install docker.io -y
+sudo systemctl start docker
+sudo systemctl enable docker
+sudo usermod -aG docker ubuntu
+
+git clone https://github.com/MeghanaDevarai/maven-web.git
+cd maven-web
+sudo apt install maven -y
+mvn clean package
+
+nano Dockerfile
+# (Add Dockerfile content)
+FROM tomcat:9.0
+COPY target/myweb.war /usr/local/tomcat/webapps/
+
+docker build -t mywebapp .
+docker run -d -p 8080:8080 mywebapp
