@@ -1,141 +1,52 @@
-Here is a clean, exam-ready, perfectly structured lab record with zero errors.
-You can write this exactly as it is in your lab book.
-All steps are clear, numbered, short, and professional.
-
-LAB RECORD
-Experiment: Jenkins – CI using GitHub Webhooks & Email Notification
-AIM
-
-To configure:
-
-Continuous Integration (CI) in Jenkins using GitHub Webhooks
-
-Email Notifications for Jenkins build success or failure
-
-SOFTWARE / TOOLS USED
-
-Jenkins
-
-GitHub
-
-ngrok
-
-Gmail (App Password)
-
-PART–A: CI USING GITHUB WEBHOOK + NGROK
-THEORY
-Continuous Integration (CI)
-
-CI is a process where developers push code frequently to GitHub, and Jenkins automatically builds and tests the project.
-
-Webhook
-
-A webhook is a URL where GitHub sends a message whenever an event happens (e.g., push).
-This message triggers Jenkins automatically.
-
-Need for ngrok
-
-If Jenkins runs on localhost, GitHub cannot reach it.
-ngrok creates a public URL and forwards GitHub requests to local Jenkins.
-
 PROCEDURE
 Step 1: Start Jenkins & ngrok
-
 Start Jenkins locally
 Example URL: http://localhost:8085/
-
 Download ngrok and run:
-
 ngrok http 8085
-
-
 Copy the ngrok HTTPS URL
 Example:
 https://1234abcd.ngrok.io
-
 Step 2: Configure GitHub Webhook
-
 Go to GitHub Repository → Settings → Webhooks → Add Webhook
-
 Payload URL:
-
 https://1234abcd.ngrok.io/github-webhook/
-
-
 Content type:
 application/json
-
 Event selection:
 Select → Just the push event
-
 Click Add webhook
-
 Step 3: Configure Jenkins to Accept Webhooks
-
 Go to Jenkins Dashboard → Your Job → Configure
-
 Scroll to Build Triggers
-
 Enable:
 ✔ GitHub hook trigger for GITScm polling
-
 Click Save
-
 Step 4: Test CI
-
 Make any change in your project
-
 Push to GitHub:
-
 git add .
 git commit -m "testing webhook"
 git push
-
-
 GitHub sends webhook
-
 Jenkins automatically starts the build
-
-OUTCOME (Part–A)
-
-GitHub successfully connected to Jenkins via webhook
-
-Every push automatically triggers Jenkins build
-
-CI is functioning correctly
-
 PART–B: EMAIL NOTIFICATION SETUP
 THEORY
-
-Jenkins sends email alerts to developers after build success/failure.
 Gmail requires a 16-digit App Password (because normal password won’t work with Jenkins).
-
 PROCEDURE
 Step 1: Create Gmail App Password
-
 Open: https://myaccount.google.com
-
 Go to Security → 2-Step Verification → Turn ON
-
 Then go to Security → App Passwords
-
 Choose:
-
 App → Other (Custom Name): Jenkins-Demo
-
 Generate → copy the 16-digit password
-
 Step 2: Install Email Extension Plugin
-
 Jenkins Dashboard → Manage Jenkins → Manage Plugins
-
 Search and install:
 Email Extension Plugin
-
 Step 3: Configure Global Email Settings
-
 Go to: Manage Jenkins → Configure System
-
 A. E-mail Notification
 Field	Value
 SMTP Server	smtp.gmail.com
@@ -145,9 +56,7 @@ Password	16-digit App Password
 Use SSL	✔ Enabled
 SMTP Port	465
 Reply-To Address	your Gmail ID
-
 Click: Test configuration by sending test e-mail
-
 B. Extended Email Notification
 Field	Value
 SMTP Server	smtp.gmail.com
@@ -155,9 +64,7 @@ SMTP Port	465
 Use SSL	✔
 Credentials	Add Gmail + App Password
 Default Content Type	text/html
-
 Click Save
-
 Step 4: Configure Email for a Specific Job
 
 Open Job → Configure
@@ -184,91 +91,34 @@ If the build fails/succeeds → you will receive an email from Jenkins
 
 Here is the cleanest and simplest version of the steps — perfect for your lab record and viva.
 
-✅ WEEK 12 — CLOUD DEPLOYMENT (CLEAR STEPS)
-STEP 1: Create Maven Web App & Push to GitHub
-
-Create a Maven Web Java Project in Eclipse.
-
-Push the project to GitHub.
-
-STEP 2: Create Ubuntu Virtual Machine (AWS EC2)
-
-Login to AWS Console
-
-Go to Services → EC2 → Launch Instance
-
-Fill details:
-
-Stage	Action
-1	Give instance name (ex: ubuntu-server)
-2	Select Ubuntu Server (Free Tier)
-3	Architecture: 64-bit (x86)
-4	Instance Type: t2.micro
-5	Create Key Pair → Download .pem file
-6	Security Group → Allow SSH(22), HTTP(80), HTTPS(443)
-7	Storage: Default 8GB
-8	Click Launch Instance
-
-After launch → Select instance → Connect
-
-Copy the SSH command.
-
-Open Git Bash / PowerShell → go to key folder.
-
-Example:
-
-cd Desktop/AWS
-ssh -i "mykey.pem" ubuntu@<Public-IP>
-
-STEP 3: Install Required Software on VM
-
-After connecting:
 
 sudo apt update
 sudo apt-get install docker.io -y
 sudo apt install git -y
 sudo apt install nano -y
-
 STEP 4: Clone Your GitHub Project
 git clone <your-repo-link>
 cd <project-folder>
-
 STEP 5: Create Dockerfile
 nano Dockerfile
-
-
 Paste:
-
 FROM tomcat:9-jdk11-openjdk
 COPY target/*.war /usr/local/tomcat/webapps/
 EXPOSE 8080
-
-
 Save → CTRL+O → Enter → CTRL+X
-
 STEP 6: Build Docker Image
 sudo docker build -t mywebapp .
-
 STEP 7: Run Docker Container
 sudo docker run -d --name app-demo -p 6060:8080 mywebapp
-
 STEP 8: Access Application Publicly
-
 Browser URL:
-
 http://<EC2-PUBLIC-IP>:6060/
-
 STEP 9: If Not Opening → Add Port in Security Group
-
 Go to EC2 → Security Groups → Inbound Rules
-
 Add:
-
 Type	Port	Source
 Custom TCP	6060	0.0.0.0/0
 DONE — Web App Successfully Deployed on Cloud
-
-
 maven web 
 <dependency>
     <groupId>javax.servlet</groupId>
