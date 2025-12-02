@@ -28,18 +28,17 @@ cmds: 1.minikube start 1
 
 
 nagios:
-open docker first
-1. docker pull jasonrivers/nagios:latest
-docker run --name nagiosdemo -p 8888:80 jasonrivers/nagios:latest
-2.docker start -ai nagios4
-3.in browser type  localhost:8888 username: nagiosadmin password: nagios
-4.dashboard appears
+docker pull jasonrivers/nagios:latest
+docker run -d --name nagiosdemo -p 8888:80 jasonrivers/nagios:latest
+docker ps
+http://localhost:8888     (username: nagiosadmin, password: nagios)
+docker logs nagiosdemo
+docker stop nagiosdemo
+docker rm nagiosdemo
+docker images
+docker rmi jasonrivers/nagios:latest
+
 5.go to services,Hosts etc. now in Hosts (it shows localhost, click on localhost).
-6.docker ps
-7.docker stop nagiosdemo
-8.docker rm nagiosdemo
-9.docker images
-10.docker rmi jasonrivers/nagios
 
 
 
